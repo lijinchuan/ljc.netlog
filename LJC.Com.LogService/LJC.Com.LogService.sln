@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogServerTest", "LogServerT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogTest2", "LogTest2\LogTest2.csproj", "{64D27C94-7B72-490D-8F0A-E0CB83A0436D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LJC.Com.LogViewWeb", "LJC.Com.LogViewWeb\LJC.Com.LogViewWeb.csproj", "{DE57E38F-AE0B-43AA-B1EC-102D3DFE6768}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{64D27C94-7B72-490D-8F0A-E0CB83A0436D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64D27C94-7B72-490D-8F0A-E0CB83A0436D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64D27C94-7B72-490D-8F0A-E0CB83A0436D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE57E38F-AE0B-43AA-B1EC-102D3DFE6768}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE57E38F-AE0B-43AA-B1EC-102D3DFE6768}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE57E38F-AE0B-43AA-B1EC-102D3DFE6768}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE57E38F-AE0B-43AA-B1EC-102D3DFE6768}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

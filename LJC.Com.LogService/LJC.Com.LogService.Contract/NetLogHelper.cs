@@ -103,6 +103,7 @@ namespace LJC.Com.LogService.Contract
                 };
 
                 msg.SetMessageBody(new LogInfo[] { log });
+                //msg.SetMessageBody(log);
 
                 var result = _client.SendMessageAnsy<WriteLogResponse>(msg);
 

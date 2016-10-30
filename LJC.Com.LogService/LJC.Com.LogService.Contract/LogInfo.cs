@@ -31,14 +31,28 @@ namespace LJC.Com.LogService.Contract
         }
 
         [ProtoMember(4)]
-        public string Info
+        public string LogTitle
         {
             get;
             set;
         }
 
         [ProtoMember(5)]
+        public string Info
+        {
+            get;
+            set;
+        }
+
+        [ProtoMember(6)]
         public string StackTrace
+        {
+            get;
+            set;
+        }
+
+        [ProtoMember(7)]
+        public DateTime LogTime
         {
             get;
             set;

@@ -2,9 +2,38 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+    <title>日志管理</title>
+    <link href="../Content/EasyUi/themes/default/easyui.css" rel="stylesheet" />
+    <link href="../Content/EasyUi/themes/icon.css" rel="stylesheet" />
+    <link href="../Content/EasyUi/demo/demo.css" rel="stylesheet" />
+    <script src="../Content/EasyUi/jquery.min.js"></script>
+    <script src="../Content/EasyUi/jquery.easyui.min.js"></script>
 </head>
-<body>
 
+<body style="margin:20px auto; width:90%;">
+    <div style="float:right; margin-right:20px; margin-bottom:10px;">
+    <select id="cc" style="width:150px"></select>
+    <div id="sp">
+        <div style="color:#99BBE8;background:#fafafa;padding:5px;">Select a loglevel</div>
+        <div style="padding:10px">
+            <input type="radio" name="loglevel" value="Error"><span>Error</span><br />
+            <input type="radio" name="loglevel" value="Fatal"><span>Fatal</span><br/>
+            <input type="radio" name="loglevel" value="Debug"><span>Debug</span><br />
+            <input type="radio" name="loglevel" value="Info"><span>Info</span><br />
+            <input type="radio" name="loglevel" value="Warning"><span>Warning</span>
+        </div>
+        <input type="hidden" id="pos" value="-1"/>
+    </div>
+    </div>
+    <p/>
+    <table style="border:solid 1px lightgreen; width:100%;" cellpadding="0">
+        <tr>
+            <th>日志时间</th>
+            <th>日志来源</th>
+            <th style="width:20%;">日志标题</th>
+            <th style="width:60%;">日志内容</th>
+        </tr>
+    </table>
+    <script type="text/javascript" src="../Scripts/Pages/Logs/index.html.js"></script>
 </body>
 </html>

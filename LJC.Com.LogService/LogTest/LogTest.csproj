@@ -34,7 +34,7 @@
   <ItemGroup>
     <Reference Include="LJC.FrameWork, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Git\LJC.FrameWork\LJC.FrameWork\bin\Debug\LJC.FrameWork.dll</HintPath>
+      <HintPath>..\..\..\LJC.FrameWork\LJC.FrameWork\bin\Debug\LJC.FrameWork.dll</HintPath>
     </Reference>
     <Reference Include="protobuf-net">
       <HintPath>..\..\..\..\GitHub\LJC.FrameWork\DLL\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>

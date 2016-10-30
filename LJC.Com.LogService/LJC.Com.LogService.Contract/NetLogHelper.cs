@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace LJC.Com.LogService.Contract
 {
@@ -20,8 +21,22 @@ namespace LJC.Com.LogService.Contract
             _client.LoginSuccess += client_LoginSuccess;
             _client.SessionResume += client_SessionResume;
             _client.SessionTimeOut += client_SessionTimeOut;
-            _client.StartClient();
-            _client.Login("", "");
+
+            if (_client.StartClient())
+            {
+                _client.Login("", "");
+            }
+            else
+            {
+                new Action(() =>
+                {
+                    while (!_client.StartClient())
+                    {
+                        Thread.Sleep(1000);
+                    }
+                    _client.Login("", "");
+                }).BeginInvoke(null, null);
+            }
         }
 
         static void client_SessionTimeOut()
@@ -79,7 +94,9 @@ namespace LJC.Com.LogService.Contract
             {
                 if(LogQueue.Count>10000)
                 {
-                    throw new Exception("发送日志失败:" + ex.Message + "，且日志队列已经满。");
+                    //throw new Exception("发送日志失败:" + ex.Message + "，且日志队列已经满。");
+                    
+                    return;
                 }
                 LogQueue.Enqueue(log);
             }

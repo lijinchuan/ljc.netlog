@@ -10,10 +10,10 @@ namespace LogTest2
     {
         static void Main(string[] args)
         {
-            var resp = NetLogHelper.SendLogEnshure(new LogInfo
+            NetLogHelper.SendLog(new LogInfo
             {
                 Info = "测试info",
-                Level = LogLevel.Info,
+                Level = LogLevel.Debug,
                 LogFrom = "test2",
                 LogType = LogType.Web,
                 StackTrace = "stacktrace"

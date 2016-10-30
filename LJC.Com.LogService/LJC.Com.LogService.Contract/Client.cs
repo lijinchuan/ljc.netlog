@@ -11,7 +11,7 @@ namespace LJC.Com.LogService.Contract
         public Client(string ip, int port)
             : base(ip, port, false)
         {
-
+            
         }
     }
 }

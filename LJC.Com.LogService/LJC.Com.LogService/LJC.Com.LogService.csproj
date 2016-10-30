@@ -34,7 +34,7 @@
   <ItemGroup>
     <Reference Include="LJC.FrameWork, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Git\LJC.FrameWork\LJC.FrameWork\bin\Debug\LJC.FrameWork.dll</HintPath>
+      <HintPath>..\..\..\LJC.FrameWork\LJC.FrameWork\bin\Release\LJC.FrameWork.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
       <HintPath>..\Lib\Log4\net40\log4net.dll</HintPath>

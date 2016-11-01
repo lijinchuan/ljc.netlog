@@ -1656,6 +1656,7 @@
     <Content Include="Content\EasyUi\demo\treegrid\treegrid_data3.json" />
     <Content Include="Content\EasyUi\demo\tree\tree_data1.json" />
     <Content Include="Content\EasyUi\demo\tree\tree_data2.json" />
+    <None Include="Properties\PublishProfiles\realse.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />

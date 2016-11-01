@@ -10,10 +10,17 @@
 
     var pos = $("#pos").val();
     var count = 0;
+    var tbody = $("tbody:eq(1)");
 
     $('#cc').combo({
         required: true,
-        editable: false
+        editable: false,
+        onChange: function () {
+            count = 0;
+            tbody.find("tr").remove();
+            pos = 0;
+            load();
+        }
     });
     $('#sp').appendTo($('#cc').combo('panel'));
     $('#sp input').click(function () {
@@ -24,12 +31,10 @@
 
     $('#sp input:first').trigger('click');
 
-    var tbody=$("tbody:eq(1)")
-
     function load()
     {
         tbody.find("tr:last").remove();
-        $.get("ReadLog.ashx", { loglevel: $(":input[name='loglevel']").val(), pos: pos },
+        $.get("ReadLog.ashx", { loglevel: $('#cc').combo('getValue'), pos: pos },
             function (json) {
                 if (json.result == 0)
                 {
@@ -54,5 +59,5 @@
         load();
     });
 
-    load();
+    //load();
 })();

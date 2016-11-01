@@ -14,7 +14,7 @@
     <RootNamespace>LJC.Com.LogViewWeb</RootNamespace>
     <AssemblyName>LJC.Com.LogViewWeb</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -1735,7 +1735,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>35423</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:35423/</IISUrl>
+          <IISUrl>http://localhost/LJC.Com.LogViewWeb</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -26,7 +26,7 @@ namespace LJC.Com.LogViewWeb.Scripts.Pages.Logs
                 {
                     pos = 0;
                 }
-                var readsize = 100;
+                var readsize = 10;
                 
                 var lastpos = -1L;
 
@@ -43,8 +43,15 @@ namespace LJC.Com.LogViewWeb.Scripts.Pages.Logs
                             }
                         }
 
-                        while ((templist = logreader.ReadObjectFromBack<LogInfo[]>()) != null)
+                        bool reset = pos == 0;
+
+                        while ((templist = logreader.ReadObjectFromBack<LogInfo[]>(reset)) != null)
                         {
+                            if(reset)
+                            {
+                                reset = false;
+                            }
+
                             if (templist.Length > 0)
                             {
                                 loglist.AddRange(templist);
@@ -53,6 +60,10 @@ namespace LJC.Com.LogViewWeb.Scripts.Pages.Logs
                                     lastpos = logreader.ReadedPostion();
                                     break;
                                 }
+                            }
+                            else
+                            {
+                                break;
                             }
                         }
 
@@ -67,7 +78,12 @@ namespace LJC.Com.LogViewWeb.Scripts.Pages.Logs
                 {
                     result=1,
                     lastpos=lastpos,
-                    data=loglist,
+                    data=loglist.Select(p=>new{
+                      content=p.Info+"<br/>"+p.StackTrace,
+                      logfrom=p.LogFrom,
+                      time=p.LogTime.ToString("yyyy-MM-dd HH:mm:ss"),
+                      title=p.LogTitle
+                    }),
                     msg="成功"
                 };
 

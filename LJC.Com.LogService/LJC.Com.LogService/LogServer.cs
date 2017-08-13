@@ -10,7 +10,7 @@ namespace LJC.Com.LogService
 {
     public class LogServer:LJC.FrameWork.SocketEasy.Sever.SessionServer
     {
-        private static string LogFileDir = System.AppDomain.CurrentDomain.BaseDirectory + "\\LogFile\\";
+        private static string LogFileDir = System.Configuration.ConfigurationManager.AppSettings["LogFileDir"] ?? System.AppDomain.CurrentDomain.BaseDirectory + "\\LogFile\\";
         //private static LJC.FrameWork.Comm.ObjTextWriter LogWriter;
         private static Dictionary<string, ObjTextWriter> LogWriters = new Dictionary<string, ObjTextWriter>();
         private static System.Threading.ReaderWriterLockSlim _lock = new System.Threading.ReaderWriterLockSlim();

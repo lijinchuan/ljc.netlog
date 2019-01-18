@@ -61,7 +61,7 @@ namespace LJC.Com.LogService
             
         }
 
-        protected override void FormApp(FrameWork.SocketApplication.Message message, FrameWork.SocketApplication.Session session)
+        protected override void FromApp(FrameWork.SocketApplication.Message message, FrameWork.SocketApplication.Session session)
         {
 
             if (message.MessageHeader.MessageType == Contract.Const.LogMessageType)
@@ -144,7 +144,7 @@ namespace LJC.Com.LogService
                 return;
             }
 
-            base.FormApp(message, session);
+            base.FromApp(message, session);
         }
 
         protected override bool OnUserLogin(string user, string pwd, out string loginFailReson)

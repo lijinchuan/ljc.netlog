@@ -7,7 +7,7 @@ namespace LJC.Com.LogService.Contract
 {
     public static class Const
     {
-        public const int LogMessageType = 110;
+        public const int LogMessageType = 210;
 
         public const int ServerPort = 19997;
     }

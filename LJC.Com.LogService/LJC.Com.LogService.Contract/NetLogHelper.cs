@@ -19,8 +19,10 @@ namespace LJC.Com.LogService.Contract
         {
             _client = new Client(_netLogServer, _netLogServerPort);
             _client.LoginSuccess += client_LoginSuccess;
+            _client.LoginFail += _client_LoginFail;
             _client.SessionResume += client_SessionResume;
             _client.SessionTimeOut += client_SessionTimeOut;
+            _client.Error += _client_Error;
 
             if (_client.StartClient())
             {
@@ -37,6 +39,16 @@ namespace LJC.Com.LogService.Contract
                     _client.Login("", "");
                 }).BeginInvoke(null, null);
             }
+        }
+
+        private static void _client_Error(Exception obj)
+        {
+            Console.WriteLine(obj.ToString());
+        }
+
+        private static void _client_LoginFail()
+        {
+            
         }
 
         static void client_SessionTimeOut()

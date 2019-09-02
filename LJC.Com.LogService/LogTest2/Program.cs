@@ -10,7 +10,7 @@ namespace LogTest2
     {
         static void Main(string[] args)
         {
-            NetLogHelper.SendLog(new LogInfo
+            NetLogHelper.SendLogEnshure(new LogInfo
             {
                 Info = "测试info",
                 Level = LogLevel.Debug,
@@ -20,6 +20,14 @@ namespace LogTest2
             });
 
             Console.Read();
+            NetLogHelper.SendLogEnshure(new LogInfo
+            {
+                Info = "测试info",
+                Level = LogLevel.Debug,
+                LogFrom = "test2",
+                LogType = LogType.Web,
+                StackTrace = "stacktrace"
+            });
             Console.Read();
         }
     }

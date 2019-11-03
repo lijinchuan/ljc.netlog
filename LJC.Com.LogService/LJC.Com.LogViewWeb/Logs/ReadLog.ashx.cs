@@ -26,7 +26,7 @@ namespace LJC.Com.LogViewWeb.Scripts.Pages.Logs
                 {
                     pos = 0;
                 }
-                var readsize = 10;
+                var readsize = 100;
                 
                 var lastpos = -1L;
 

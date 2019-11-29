@@ -19,7 +19,7 @@
             count = 0;
             tbody.find("tr").remove();
             pos = 0;
-            load();
+            //load();
         }
     });
     $('#sp').appendTo($('#cc').combo('panel'));
@@ -34,7 +34,7 @@
     function load()
     {
         tbody.find("tr:last").remove();
-        $.get("ReadLog.ashx", { loglevel: $('#cc').combo('getValue'), pos: pos },
+        $.get("ReadLog.ashx", { loglevel: $('#cc').combo('getValue'), pos: pos, begin: $('#dtbegin').datetimebox("getValue"), end: $('#dtend').datetimebox("getValue"), word: $('#wd').val() },
             function (json) {
                 if (json.result == 0)
                 {
@@ -59,5 +59,7 @@
         load();
     });
 
-    //load();
+    $("#search").live('click', function () {
+        load();
+    });
 })();

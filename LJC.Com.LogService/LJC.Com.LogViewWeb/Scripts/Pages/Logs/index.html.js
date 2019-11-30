@@ -60,6 +60,9 @@
     });
 
     $("#search").live('click', function () {
+        count = 0;
+        tbody.find("tr").remove();
+        pos = 0;
         load();
     });
 })();

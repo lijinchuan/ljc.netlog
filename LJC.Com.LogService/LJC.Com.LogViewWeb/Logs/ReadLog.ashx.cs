@@ -24,6 +24,7 @@ namespace LJC.Com.LogViewWeb.Scripts.Pages.Logs
                 var word = context.Request["word"];
                 var begintxt = context.Request["begin"];
                 var endtext = context.Request["end"];
+                var range = context.Request["range"]?.ToUpper();
                 DateTime begin = DateTime.Now;
                 DateTime end = DateTime.Now;
                 if(!DateTime.TryParse(begintxt,out begin))
@@ -77,10 +78,25 @@ namespace LJC.Com.LogViewWeb.Scripts.Pages.Logs
                                 templist = templist.Where(p => p.LogTime >= begin && p.LogTime <= end).ToArray();
                                 if (!string.IsNullOrEmpty(word))
                                 {
-                                    templist = templist.Where(p => p.LogTitle?.IndexOf(word, StringComparison.OrdinalIgnoreCase) > -1
-                                    || p.Info?.IndexOf(word, StringComparison.OrdinalIgnoreCase) > -1
-                                    || p.StackTrace?.IndexOf(word, StringComparison.OrdinalIgnoreCase) > -1
-                                    || p.LogFrom?.IndexOf(word, StringComparison.OrdinalIgnoreCase) > -1).ToArray();
+                                    if (range == "T")
+                                    {
+                                        templist = templist.Where(p => p.LogTitle?.IndexOf(word, StringComparison.OrdinalIgnoreCase) > -1).ToArray();
+                                    }
+                                    else if (range == "C")
+                                    {
+                                        templist = templist.Where(p => p.Info?.IndexOf(word, StringComparison.OrdinalIgnoreCase) > -1).ToArray();
+                                    }
+                                    else if (range == "S")
+                                    {
+                                        templist = templist.Where(p => p.LogFrom?.IndexOf(word, StringComparison.OrdinalIgnoreCase) > -1).ToArray();
+                                    }
+                                    else
+                                    {
+                                        templist = templist.Where(p => p.LogTitle?.IndexOf(word, StringComparison.OrdinalIgnoreCase) > -1
+                                        || p.Info?.IndexOf(word, StringComparison.OrdinalIgnoreCase) > -1
+                                        || p.StackTrace?.IndexOf(word, StringComparison.OrdinalIgnoreCase) > -1
+                                        || p.LogFrom?.IndexOf(word, StringComparison.OrdinalIgnoreCase) > -1).ToArray();
+                                    }
                                 }
 
                                 loglist.AddRange(templist);

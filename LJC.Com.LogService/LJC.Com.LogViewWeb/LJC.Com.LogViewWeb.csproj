@@ -43,10 +43,15 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LJC.FrameWork">
-      <HintPath>..\..\..\LJC.FrameWork\LJC.FrameWork\bin\Release\LJC.FrameWork.dll</HintPath>
+    <Reference Include="Ljc.Com.IMChat.Contract">
+      <HintPath>..\Lib\Ljc.Com.IMChat.Contract.dll</HintPath>
     </Reference>
-    <Reference Include="LJC.FrameWork.SOA">
+    <Reference Include="LJC.FrameWork, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\LJC.FrameWork\LJC.FrameWork.SOA\bin\Release\LJC.FrameWork.dll</HintPath>
+    </Reference>
+    <Reference Include="LJC.FrameWork.SOA, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\LJC.FrameWork\LJC.FrameWork.SOA\bin\Release\LJC.FrameWork.SOA.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -1643,6 +1648,7 @@
     <Content Include="Images\orderedList9.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Login.aspx" />
     <Content Include="LogsNew\Index.html" />
     <Content Include="Logs\Index.html" />
     <Content Include="packages.config" />
@@ -1667,6 +1673,9 @@
     <Content Include="Content\EasyUi\demo\treegrid\treegrid_data3.json" />
     <Content Include="Content\EasyUi\demo\tree\tree_data1.json" />
     <Content Include="Content\EasyUi\demo\tree\tree_data2.json" />
+    <Content Include="Logs\Trace.ashx" />
+    <Content Include="LogsNew\Trace.ashx" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="LogsNew\Web.config" />
     <Content Include="LogsNew\ReadLog.ashx" />
     <Content Include="_app.txt">
@@ -1701,6 +1710,19 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LogsNew\Trace.ashx.cs">
+      <DependentUpon>Trace.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Logs\Trace.ashx.cs">
+      <DependentUpon>Trace.ashx</DependentUpon>
     </Compile>
     <Compile Include="LogsNew\ReadLog.ashx.cs">
       <DependentUpon>ReadLog.ashx</DependentUpon>

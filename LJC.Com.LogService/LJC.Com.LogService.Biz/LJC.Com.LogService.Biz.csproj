@@ -49,9 +49,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LJC.Com.LogService.Contract\LJC.Com.LogService.Contract.csproj">
-      <Project>{6552522e-1b60-4859-807a-3b5cbddb5cf5}</Project>
-      <Name>LJC.Com.LogService.Contract</Name>
+    <ProjectReference Include="..\LJC.Com.LogService.ContractNew\LJC.Com.LogService.ContractNew.csproj">
+      <Project>{69474a6f-80c8-4ac7-a37d-af4335a19d54}</Project>
+      <Name>LJC.Com.LogService.ContractNew</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

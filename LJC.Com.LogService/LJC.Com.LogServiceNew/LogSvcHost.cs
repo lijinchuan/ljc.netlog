@@ -22,16 +22,7 @@ namespace LJC.Com.LogServiceNew
                         InsertLogsResponse resp = new InsertLogsResponse();
                         var req = FrameWork.EntityBuf.EntityBufCore.DeSerialize<InsertLogsRequest>(Param);
 
-                        resp.Success = LogService.Biz.LogService.WriteLogs(req.LogInfos.Select(p => new LogService.Contract.LogInfo
-                        {
-                            Info = p.Info,
-                            Level = (LogService.Contract.LogLevel)p.Level,
-                            LogFrom = p.LogFrom,
-                            LogTime = p.LogTime,
-                            LogTitle = p.LogTitle,
-                            LogType = (LogService.Contract.LogType)p.LogType,
-                            StackTrace = p.StackTrace
-                        }).ToArray());
+                        resp.Success = LogService.Biz.LogService.WriteLogs(req.LogInfos);
 
                         if (resp.Success)
                         {
@@ -49,19 +40,11 @@ namespace LJC.Com.LogServiceNew
                         ReadLogsResponse resp = new ReadLogsResponse();
                         var req = FrameWork.EntityBuf.EntityBufCore.DeSerialize<ReadLogsRequest>(Param);
 
-                        var result = LogService.Biz.LogService.ReadLogs((LogService.Contract.LogLevel)req.Loglevel, req.Pos, req.ReadSize);
+                        var result = LogService.Biz.LogService.ReadLogs(req.Loglevel, req.Pos, req.ReadSize,
+                            req.Begin,req.End,req.Range,req.Word);
 
                         resp.Lastpos = result.Item1;
-                        resp.Logs = result.Item2.Select(p=>new LogInfo
-                        {
-                            Info=p.Info,
-                            Level= (LogLevel)p.Level,
-                            LogFrom=p.LogFrom,
-                            LogTime=p.LogTime,
-                            LogTitle=p.LogTitle,
-                            LogType= (LogType)p.LogType,
-                            StackTrace=p.StackTrace
-                        }).ToArray();
+                        resp.Logs = result.Item2;
 
                         return resp;
                     }

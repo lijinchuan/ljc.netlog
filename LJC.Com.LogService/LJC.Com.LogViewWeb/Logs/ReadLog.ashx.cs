@@ -21,12 +21,27 @@ namespace LJC.Com.LogViewWeb.Scripts.Pages.Logs
             {
                 context.Response.ContentType = "text/json";
                 var loglevel = context.Request["loglevel"];
+                var word = context.Request["word"];
+                var begintxt = context.Request["begin"];
+                var endtext = context.Request["end"];
+                var range = context.Request["range"]?.ToUpper();
+                DateTime begin = DateTime.Now;
+                DateTime end = DateTime.Now;
+                if(!DateTime.TryParse(begintxt,out begin))
+                {
+                    begin = DateTime.Now.AddDays(-7);
+                }
+                if (!DateTime.TryParse(endtext, out end))
+                {
+                    end = DateTime.Now;
+                }
                 var pos = -1;
                 if (!int.TryParse(context.Request["pos"], out pos))
                 {
                     pos = 0;
                 }
                 var readsize = 100;
+                var skipcount = 0;
                 
                 var lastpos = -1L;
 
@@ -47,6 +62,7 @@ namespace LJC.Com.LogViewWeb.Scripts.Pages.Logs
 
                         while ((templist = logreader.ReadObjectFromBack<LogInfo[]>(reset)) != null)
                         {
+                            skipcount += templist.Length;
                             if(reset)
                             {
                                 reset = false;
@@ -54,10 +70,44 @@ namespace LJC.Com.LogViewWeb.Scripts.Pages.Logs
 
                             if (templist.Length > 0)
                             {
+                                if (templist.First().LogTime > end)
+                                {
+                                    continue;
+                                }
+                                var lastlog = templist.Last();
+                                templist = templist.Where(p => p.LogTime >= begin && p.LogTime <= end).ToArray();
+                                if (!string.IsNullOrEmpty(word))
+                                {
+                                    if (range == "T")
+                                    {
+                                        templist = templist.Where(p => p.LogTitle?.IndexOf(word, StringComparison.OrdinalIgnoreCase) > -1).ToArray();
+                                    }
+                                    else if (range == "C")
+                                    {
+                                        templist = templist.Where(p => p.Info?.IndexOf(word, StringComparison.OrdinalIgnoreCase) > -1).ToArray();
+                                    }
+                                    else if (range == "S")
+                                    {
+                                        templist = templist.Where(p => p.LogFrom?.IndexOf(word, StringComparison.OrdinalIgnoreCase) > -1).ToArray();
+                                    }
+                                    else
+                                    {
+                                        templist = templist.Where(p => p.LogTitle?.IndexOf(word, StringComparison.OrdinalIgnoreCase) > -1
+                                        || p.Info?.IndexOf(word, StringComparison.OrdinalIgnoreCase) > -1
+                                        || p.StackTrace?.IndexOf(word, StringComparison.OrdinalIgnoreCase) > -1
+                                        || p.LogFrom?.IndexOf(word, StringComparison.OrdinalIgnoreCase) > -1).ToArray();
+                                    }
+                                }
+
                                 loglist.AddRange(templist);
                                 if (loglist.Count >= readsize)
                                 {
                                     lastpos = logreader.ReadedPostion();
+                                    break;
+                                }
+
+                                if (lastlog.LogTime <begin)
+                                {
                                     break;
                                 }
                             }
@@ -78,6 +128,7 @@ namespace LJC.Com.LogViewWeb.Scripts.Pages.Logs
                 {
                     result=1,
                     lastpos=lastpos,
+                    skipcount=skipcount,
                     data=loglist.Select(p=>new{
                       content=p.Info+"<br/>"+p.StackTrace,
                       logfrom=p.LogFrom,

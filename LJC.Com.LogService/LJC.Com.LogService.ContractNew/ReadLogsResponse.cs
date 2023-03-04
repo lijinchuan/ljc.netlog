@@ -8,7 +8,7 @@ namespace LJC.Com.LogService.ContractNew
 {
     public class ReadLogsResponse
     {
-        public LogInfo[] Logs
+        public List<LogInfo> Logs
         {
             get;
             set;

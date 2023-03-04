@@ -13,21 +13,33 @@ namespace LJC.Com.LogViewWeb.Scripts.Pages.LogsNew
     /// </summary>
     public class ReadLog : IHttpHandler
     {
-        static string _logdir = System.Configuration.ConfigurationManager.AppSettings["logforder"];
-
         public void ProcessRequest(HttpContext context)
         {
-            LogService.ContractNew.LogInfo[] loglist = null;
+            List<LogService.ContractNew.LogInfo> loglist = null;
             try
             {
                 context.Response.ContentType = "text/json";
                 var loglevel = context.Request["loglevel"];
+                var word = context.Request["word"];
+                var begintxt = context.Request["begin"];
+                var endtext = context.Request["end"];
+                var range = context.Request["range"]?.ToUpper();
+                DateTime begin = DateTime.Now;
+                DateTime end = DateTime.Now;
+                if (!DateTime.TryParse(begintxt, out begin))
+                {
+                    begin = DateTime.Now.AddDays(-7);
+                }
+                if (!DateTime.TryParse(endtext, out end))
+                {
+                    end = DateTime.Now;
+                }
                 var pos = -1;
                 if (!int.TryParse(context.Request["pos"], out pos))
                 {
                     pos = 0;
                 }
-                
+
                 var lastpos = -1L;
 
                 if (pos != -1)
@@ -38,7 +50,11 @@ namespace LJC.Com.LogViewWeb.Scripts.Pages.LogsNew
                         {
                             Loglevel = (LogService.ContractNew.LogLevel)Enum.Parse(typeof(LogService.ContractNew.LogLevel), loglevel),
                             Pos = pos,
-                            ReadSize = 100
+                            ReadSize = 100,
+                            Begin=begin,
+                            End=end,
+                            Range=range,
+                            Word=word
                         });
 
                     loglist = resp.Logs;

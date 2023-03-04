@@ -25,5 +25,29 @@ namespace LJC.Com.LogService.ContractNew
             get;
             set;
         }
+
+        public DateTime Begin
+        {
+            get;
+            set;
+        }
+
+        public DateTime End
+        {
+            get;
+            set;
+        }
+
+        public string Range
+        {
+            get;
+            set;
+        }
+
+        public string Word
+        {
+            get;
+            set;
+        }
     }
 }

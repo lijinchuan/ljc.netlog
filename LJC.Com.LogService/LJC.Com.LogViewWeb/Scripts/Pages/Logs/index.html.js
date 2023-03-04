@@ -19,7 +19,7 @@
             count = 0;
             tbody.find("tr").remove();
             pos = 0;
-            load();
+            //load();
         }
     });
     $('#sp').appendTo($('#cc').combo('panel'));
@@ -31,10 +31,29 @@
 
     $('#sp input:first').trigger('click');
 
+    $('#ccrange').combo({
+        required: true,
+        editable: false,
+        onChange: function () {
+            count = 0;
+            tbody.find("tr").remove();
+            pos = 0;
+            //load();
+        }
+    });
+    $('#range').appendTo($('#ccrange').combo('panel'));
+    $('#range input').click(function () {
+        var v = $(this).val();
+        var s = $(this).next('span').text();
+        $('#ccrange').combo('setValue', v).combo('setText', s).combo('hidePanel');
+    });
+
+    $('#range input:first').trigger('click');
+
     function load()
     {
         tbody.find("tr:last").remove();
-        $.get("ReadLog.ashx", { loglevel: $('#cc').combo('getValue'), pos: pos },
+        $.get("ReadLog.ashx", { loglevel: $('#cc').combo('getValue'), pos: pos, begin: $('#dtbegin').datetimebox("getValue"), end: $('#dtend').datetimebox("getValue"), range: $('#ccrange').combo('getValue'), word: $('#wd').val() },
             function (json) {
                 if (json.result == 0)
                 {
@@ -59,5 +78,10 @@
         load();
     });
 
-    //load();
+    $("#search").live('click', function () {
+        count = 0;
+        tbody.find("tr").remove();
+        pos = 0;
+        load();
+    });
 })();

@@ -35,20 +35,34 @@
 
 <body style="margin:20px auto; width:98%;">
     <div style="float:right; margin-right:20px; margin-bottom:10px;">
-    <select id="cc" style="width:150px"></select>
-    <div id="sp">
-        <div style="color:#99BBE8;background:#fafafa;padding:5px;">Select a loglevel</div>
-        <div style="padding:10px">
-            <input type="radio" name="loglevel" value="Error"><span>Error</span><br />
-            <input type="radio" name="loglevel" value="Fatal"><span>Fatal</span><br/>
-            <input type="radio" name="loglevel" value="Debug"><span>Debug</span><br />
-            <input type="radio" name="loglevel" value="Info"><span>Info</span><br />
-            <input type="radio" name="loglevel" value="Warning"><span>Warning</span>
+        开始时间：<input type="text" id="dtbegin" class="easyui-datetimebox">
+        结束时间：<input type="text" id="dtend" class="easyui-datetimebox">
+        在<select id="ccrange" style="width:150px"></select>
+        <div id="range">
+            <div style="color:#99BBE8;background:#fafafa;padding:5px;">选择搜索范围</div>
+            <div style="padding:10px">
+                <input type="radio" name="range" value="A"><span>所有</span><br/>
+                <input type="radio" name="range" value="S"><span>日志来源</span><br />
+                <input type="radio" name="range" value="T"><span>日志标题</span><br />
+                <input type="radio" name="range" value="C"><span>日志内容</span>
+            </div>
+            <input type="hidden" id="pos" value="0" />
+        </div>中搜索<input class="easyui-textbox" id="wd" data-options="prompt:'关键词'" style="width:150px;">
+        <select id="cc" style="width:150px"></select>
+        <div id="sp">
+            <div style="color:#99BBE8;background:#fafafa;padding:5px;">选择日志级别</div>
+            <div style="padding:10px">
+                <input type="radio" name="loglevel" value="Error"><span>Error</span><br />
+                <input type="radio" name="loglevel" value="Fatal"><span>Fatal</span><br />
+                <input type="radio" name="loglevel" value="Debug"><span>Debug</span><br />
+                <input type="radio" name="loglevel" value="Info"><span>Info</span><br />
+                <input type="radio" name="loglevel" value="Warning"><span>Warning</span>
+            </div>
+            <input type="hidden" id="pos" value="0" />
         </div>
-        <input type="hidden" id="pos" value="0"/>
+        <a href="#" id="search" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="width:80px">Search</a>
     </div>
-    </div>
-    <p/>
+    <p />
     <table style="border:solid 1px lightblue; width:100%;table-layout:fixed;word-wrap:break-word;word-break:break-all;overflow: hidden;" cellpadding="0">
         <tr>
             <th style="width:5%;">编号</th>
@@ -58,10 +72,10 @@
             <th style="width:40%;">日志内容</th>
         </tr>
         <tbody>
-
         </tbody>
     </table>
-    
+
     <script type="text/javascript" src="../Scripts/Pages/Logs/index.html.js"></script>
+    <img src="Trace.ashx" style="display:none;" />
 </body>
 </html>

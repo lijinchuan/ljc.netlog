@@ -1,4 +1,4 @@
-﻿using LJC.Com.LogService.Contract;
+﻿using LJC.Com.LogService.ContractNew;
 using LJC.FrameWork.Comm;
 using System;
 using System.Collections.Generic;
@@ -23,7 +23,7 @@ namespace LJC.Com.LogService.Biz
 
             foreach (var name in Enum.GetNames(typeof(LogLevel)))
             {
-                LogWriters[name] = ObjTextWriter.CreateWriter(LogFileDir + name + "log.bin", ObjTextReaderWriterEncodeType.protobufex);
+                LogWriters[name] = ObjTextWriter.CreateWriter(LogFileDir + name + "log.bin", ObjTextReaderWriterEncodeType.entitybufex);
             }
 
             _flushtimer.Interval = 5000;
@@ -53,7 +53,7 @@ namespace LJC.Com.LogService.Biz
             _flushtimer.Start();
         }
 
-        public static bool WriteLogs(LogInfo[] logs)
+        public static bool WriteLogs(List<LogInfo> logs)
         {
             if (logs == null || !logs.Any())
             {
@@ -66,11 +66,11 @@ namespace LJC.Com.LogService.Biz
 
                 //Console.WriteLine("当前时间2：" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss" + "." + DateTime.Now.Millisecond));
 
-                if (logs != null && logs.Length > 0)
+                if (logs != null && logs.Count > 0)
                 {
                     logs.GroupBy(p => p.Level).ToList().ForEach(p =>
                     {
-                        LogWriters[p.Key.ToString()].AppendObject<LogInfo[]>(p.ToArray());
+                        LogWriters[p.Key.ToString()].AppendObject(p.ToArray());
                     });
 
                     //LogWriter.Flush();
@@ -94,17 +94,18 @@ namespace LJC.Com.LogService.Biz
             return false;
         }
 
-        public static Tuple<long,List<LogInfo>> ReadLogs(LogLevel logLevel,long pos,int pageSize)
+        public static Tuple<long,List<LogInfo>> ReadLogs(LogLevel logLevel,long pos,int pageSize,DateTime begin,DateTime end,string range,string word)
         {
 
             List<LogInfo> loglist = new List<LogInfo>();
             var readsize = Math.Min(100, pageSize);
 
             var lastpos = -1L;
+            var skipcount = 0;
 
             if (pos != -1)
             {
-                using (ObjTextReader logreader = ObjTextReader.CreateReader(LogFileDir + "\\" + logLevel + "log.bin"))
+                using (ObjTextReader logreader = ObjTextReader.CreateReader(LogFileDir + logLevel + "log.bin"))
                 {
                     LogInfo[] templist = null;
                     if (pos != 0)
@@ -119,6 +120,7 @@ namespace LJC.Com.LogService.Biz
 
                     while ((templist = logreader.ReadObjectFromBack<LogInfo[]>(reset)) != null)
                     {
+                        skipcount += templist.Length;
                         if (reset)
                         {
                             reset = false;
@@ -126,10 +128,44 @@ namespace LJC.Com.LogService.Biz
 
                         if (templist.Length > 0)
                         {
+                            if (templist.First().LogTime > end)
+                            {
+                                continue;
+                            }
+                            var lastlog = templist.Last();
+                            templist = templist.Where(p => p.LogTime >= begin && p.LogTime <= end).ToArray();
+                            if (!string.IsNullOrEmpty(word))
+                            {
+                                if (range == "T")
+                                {
+                                    templist = templist.Where(p => p.LogTitle?.IndexOf(word, StringComparison.OrdinalIgnoreCase) > -1).ToArray();
+                                }
+                                else if (range == "C")
+                                {
+                                    templist = templist.Where(p => p.Info?.IndexOf(word, StringComparison.OrdinalIgnoreCase) > -1).ToArray();
+                                }
+                                else if (range == "S")
+                                {
+                                    templist = templist.Where(p => p.LogFrom?.IndexOf(word, StringComparison.OrdinalIgnoreCase) > -1).ToArray();
+                                }
+                                else
+                                {
+                                    templist = templist.Where(p => p.LogTitle?.IndexOf(word, StringComparison.OrdinalIgnoreCase) > -1
+                                    || p.Info?.IndexOf(word, StringComparison.OrdinalIgnoreCase) > -1
+                                    || p.StackTrace?.IndexOf(word, StringComparison.OrdinalIgnoreCase) > -1
+                                    || p.LogFrom?.IndexOf(word, StringComparison.OrdinalIgnoreCase) > -1).ToArray();
+                                }
+                            }
+
                             loglist.AddRange(templist);
                             if (loglist.Count >= readsize)
                             {
                                 lastpos = logreader.ReadedPostion();
+                                break;
+                            }
+
+                            if (lastlog.LogTime < begin)
+                            {
                                 break;
                             }
                         }

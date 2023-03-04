@@ -16,7 +16,9 @@ namespace LogTest2
                 Level = LogLevel.Debug,
                 LogFrom = "test2",
                 LogType = LogType.Web,
-                StackTrace = "stacktrace"
+                StackTrace = "stacktrace",
+                LogTime=DateTime.Now,
+                LogTitle="test"
             });
 
             Console.Read();
@@ -26,7 +28,9 @@ namespace LogTest2
                 Level = LogLevel.Debug,
                 LogFrom = "test2",
                 LogType = LogType.Web,
-                StackTrace = "stacktrace"
+                StackTrace = "stacktrace",
+                LogTitle="testw",
+                LogTime=DateTime.Now
             });
             Console.Read();
         }

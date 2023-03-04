@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LJC.Com.LogService", "LJC.Com.LogService\LJC.Com.LogService.csproj", "{138BCAC1-04EA-4756-9E39-8ACA4E9367A2}"
 EndProject
@@ -14,6 +14,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogTest2", "LogTest2\LogTest2.csproj", "{64D27C94-7B72-490D-8F0A-E0CB83A0436D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LJC.Com.LogViewWeb", "LJC.Com.LogViewWeb\LJC.Com.LogViewWeb.csproj", "{DE57E38F-AE0B-43AA-B1EC-102D3DFE6768}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LJC.Com.LogServiceNew", "LJC.Com.LogServiceNew\LJC.Com.LogServiceNew.csproj", "{44F5ADE0-FD16-48CB-9DE0-D87CAEDC7C74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LJC.Com.LogService.ContractNew", "LJC.Com.LogService.ContractNew\LJC.Com.LogService.ContractNew.csproj", "{69474A6F-80C8-4AC7-A37D-AF4335A19D54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LJC.Com.LogService.Biz", "LJC.Com.LogService.Biz\LJC.Com.LogService.Biz.csproj", "{86916D2D-9030-42B5-AB1B-F85BACDC8F6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,9 +51,24 @@ Global
 		{DE57E38F-AE0B-43AA-B1EC-102D3DFE6768}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE57E38F-AE0B-43AA-B1EC-102D3DFE6768}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE57E38F-AE0B-43AA-B1EC-102D3DFE6768}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44F5ADE0-FD16-48CB-9DE0-D87CAEDC7C74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44F5ADE0-FD16-48CB-9DE0-D87CAEDC7C74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44F5ADE0-FD16-48CB-9DE0-D87CAEDC7C74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44F5ADE0-FD16-48CB-9DE0-D87CAEDC7C74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69474A6F-80C8-4AC7-A37D-AF4335A19D54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69474A6F-80C8-4AC7-A37D-AF4335A19D54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69474A6F-80C8-4AC7-A37D-AF4335A19D54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69474A6F-80C8-4AC7-A37D-AF4335A19D54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86916D2D-9030-42B5-AB1B-F85BACDC8F6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86916D2D-9030-42B5-AB1B-F85BACDC8F6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86916D2D-9030-42B5-AB1B-F85BACDC8F6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86916D2D-9030-42B5-AB1B-F85BACDC8F6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F2411189-6C3F-420C-AEB7-369E00567E5F}
 	EndGlobalSection
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true

@@ -1,4 +1,4 @@
-﻿using LJC.Com.LogService.Contract;
+﻿using LJC.Com.LogService.ContractNew;
 using System;
 using System.Collections.Generic;
 using System.Linq;

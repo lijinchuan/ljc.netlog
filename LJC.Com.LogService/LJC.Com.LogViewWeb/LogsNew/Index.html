@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>日志管理</title>
+    <link href="../Content/EasyUi/themes/default/easyui.css" rel="stylesheet" />
+    <link href="../Content/EasyUi/themes/icon.css" rel="stylesheet" />
+    <link href="../Content/EasyUi/demo/demo.css" rel="stylesheet" />
+    <script src="../Content/EasyUi/jquery.min.js"></script>
+    <script src="../Content/EasyUi/jquery.easyui.min.js"></script>
+
+    <style type="text/css">
+        th{
+            height:30px;
+        }
+
+        td{
+            border-top:dashed 1px #ccc;
+            height:22px;
+        }
+
+        .btncontinue{
+            color:blue;
+            line-height:25px;
+            cursor:pointer;
+        }
+
+        .wating{
+            background-repeat:no-repeat;
+            background-image:url("/Manager/Images/datareading.gif");
+            background-position:center;
+        }
+    </style>
+</head>
+
+<body style="margin:20px auto; width:98%;">
+    <div style="float:right; margin-right:20px; margin-bottom:10px;">
+    <select id="cc" style="width:150px"></select>
+    <div id="sp">
+        <div style="color:#99BBE8;background:#fafafa;padding:5px;">Select a loglevel</div>
+        <div style="padding:10px">
+            <input type="radio" name="loglevel" value="Error"><span>Error</span><br />
+            <input type="radio" name="loglevel" value="Fatal"><span>Fatal</span><br/>
+            <input type="radio" name="loglevel" value="Debug"><span>Debug</span><br />
+            <input type="radio" name="loglevel" value="Info"><span>Info</span><br />
+            <input type="radio" name="loglevel" value="Warning"><span>Warning</span>
+        </div>
+        <input type="hidden" id="pos" value="0"/>
+    </div>
+    </div>
+    <p/>
+    <table style="border:solid 1px lightblue; width:100%;table-layout:fixed;word-wrap:break-word;word-break:break-all;overflow: hidden;" cellpadding="0">
+        <tr>
+            <th style="width:5%;">编号</th>
+            <th style="width:15%;">日志时间</th>
+            <th style="width:20%;">日志来源</th>
+            <th style="width:20%;">日志标题</th>
+            <th style="width:40%;">日志内容</th>
+        </tr>
+        <tbody>
+
+        </tbody>
+    </table>
+    
+    <script type="text/javascript" src="../Scripts/Pages/Logs/index.html.js"></script>
+</body>
+</html>

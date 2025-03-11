@@ -29,7 +29,7 @@ namespace LJC.Com.LogViewWeb.LogsNew
                     MsgTitle = "注意有人查看日志"
                 });
             }
-            catch (Exception ex)
+            catch
             {
 
             }

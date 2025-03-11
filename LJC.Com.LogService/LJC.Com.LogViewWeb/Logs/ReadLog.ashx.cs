@@ -35,8 +35,8 @@ namespace LJC.Com.LogViewWeb.Scripts.Pages.Logs
                 {
                     end = DateTime.Now;
                 }
-                var pos = -1;
-                if (!int.TryParse(context.Request["pos"], out pos))
+                var pos = -1L;
+                if (!long.TryParse(context.Request["pos"], out pos))
                 {
                     pos = 0;
                 }

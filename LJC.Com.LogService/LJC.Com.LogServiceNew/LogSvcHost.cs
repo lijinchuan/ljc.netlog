@@ -13,7 +13,7 @@ namespace LJC.Com.LogServiceNew
         {
         }
 
-        public override object DoResponse(int funcId, byte[] Param, string clientid)
+        public override object DoResponse(int funcId, byte[] Param, string clientid, Dictionary<string, string> header)
         {
             switch (funcId)
             {
@@ -51,7 +51,7 @@ namespace LJC.Com.LogServiceNew
 
             }
 
-            return base.DoResponse(funcId, Param, clientid);
+            return base.DoResponse(funcId, Param, clientid, header);
         }
     }
 }
